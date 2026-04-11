@@ -8,11 +8,11 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "migrate": "node src/scripts/tablemigration.js"
   },
   "dependencies": {
     "express": "^5.2.1",
-    "og": "^0.0.2",
     "pg": "^8.20.0"
   },
   "devDependencies": {
