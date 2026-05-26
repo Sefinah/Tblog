@@ -1,5 +1,5 @@
 
-import { bookService, deleteBookService, getAllbookService, updateBookService } from "../services/book.service.js"
+import { bookService, deleteBookService, getAllbookService, getBookIdService, updateBookService } from "../services/book.service.js"
 
 
 export const createBook = async (req, res) => {
@@ -29,6 +29,21 @@ export const getAllBook = async (req,res) =>{
         const result = await getAllbookService()
         return res.status(201).json({
             message: "book gotten successfully",
+            data: result
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message: error.message || "something went wrong"
+        })
+    }
+}
+
+export const getBookId = async(req,res)=>{
+    try {
+        const id = req.params.id
+        const result = await getBookIdService(id)
+        return res.status(201).json({
+            message: "book count gotten successfully",
             data: result
         })
     } catch (error) {

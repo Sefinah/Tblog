@@ -87,3 +87,13 @@ streak_count INT,
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )
 `
+export const addLastActiveDate = `
+ALTER TABLE streaks
+ADD COLUMN IF NOT EXISTS 
+last_streak_date DATE DEFAULT CURRENT_DATE
+`
+
+export const addConstraint = `
+ALTER TABLE streaks
+ADD CONSTRAINT unique_user_id UNIQUE (user_id)
+`

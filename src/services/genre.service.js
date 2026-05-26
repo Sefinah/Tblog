@@ -27,7 +27,7 @@ export const getAllGenreService = async() =>{
 
 export const deleteGenreService = async(id) => {
     try {
-        const idExist = await pool.query('SELECT id FROM genre where id = $1', [id])
+        const idExist = await pool.query('SELECT id FROM genre WHERE id = $1', [id])
         console.log(idExist.rows)
         if (idExist.rows.length === 0){
             throw new Error('Genre not found')

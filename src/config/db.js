@@ -1,5 +1,5 @@
 import {Pool} from 'pg'
-import { bookmarkTable, bookTable, commentTable, followerTable, genreTable, likeTable, streakTable, userTable } from '../models/createuserstable.js'
+import { addConstraint, addLastActiveDate, bookmarkTable, bookTable, commentTable, followerTable, genreTable, likeTable, streakTable, userTable, viewTable } from '../models/createuserstable.js'
 
 
 export const pool = new Pool ({
@@ -38,7 +38,14 @@ export const createTable = async () => {
         console.log('bookmark table created')
         await client.query(streakTable)
         console.log('streak table created')
+        await client.query(viewTable)
+        console.log('view table created')
         console.log('all tables created successfully')
+        await client.query(addLastActiveDate)
+        console.log('streaks table updated')
+        await client.query(addConstraint)
+        console.log('constraint updated on streaks table ')
+
     } catch (error) {
         console.log('error from createtable', error)
     } finally{
